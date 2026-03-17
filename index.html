@@ -49,26 +49,17 @@
         </style>
     </head>
 
-    <body>
-        <div id="gameCanvas"></div>
+    <body style="background-color: black;">
+    <script type="text/javascript" src="js/main.js"></script>
 
-        <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        // Paksa browser agar fokus ke game saat layar di-tap
+        document.addEventListener('touchstart', function() {
+            window.focus();
+        }, false);
 
-        <script type="text/javascript">
-            // Mencegah menu klik kanan (simulasi tap 2 jari/tahan lama)
-            document.addEventListener('contextmenu', e => e.preventDefault());
-
-            // Mencegah gesture zoom browser yang bikin tombol gak respon
-            document.addEventListener('touchstart', (e) => {
-                if (e.touches.length > 1) e.preventDefault();
-            }, { passive: false });
-
-            // Menghilangkan delay tap di beberapa browser mobile
-            document.addEventListener('touchend', (e) => {
-                const now = Date.now();
-                if (now - (window.lastTouch || 0) <= 300) e.preventDefault();
-                window.lastTouch = now;
-            }, false);
-        </script>
-    </body>
+        // Matikan fungsi klik kanan/menu biar gak bentrok sama analog
+        document.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
 </html>
